@@ -1,7 +1,6 @@
 {
     "name" : "Tommy Dang",
     "img" : "https://www.depts.ttu.edu/cs/faculty/tommy_dang/tdang_2016.jpg",
-    "size" : 12000,
     "children" : [
         {
             "name" : "Vinh Nguyen",
@@ -12,19 +11,16 @@
             "children" : [
                 {
                     "name" : "Fang Jin",
-                    "size" : 6000,
                     "pubAuthority" : "The Visualization in Environmental Sciences",
                     "link" : "https://www.informatik.uni-leipzig.de/bsv/envirvis2018/"
                 },
                 {
                     "name" : "Keith Jones",
-                    "size" : 6000,
                     "pubAuthority" : "ACM SIGSOFT International Symposium on Software Testing and Analysis",
                     "link" : "https://conf.researchr.org/home/issta-2018",
                     "children" : [
                         {
                             "name" : "Akbar",
-                            "size" : 4000,
                             "pubAuthority" : "ACM SIGSOFT International Symposium on Software Testing and Analysis",
                             "link" : "https://conf.researchr.org/home/issta-2018"
                         }
@@ -32,7 +28,6 @@
                 },
                 {
                     "name" : "Yasin",
-                    "size" : 6000,
                     "pubAuthority" : "KDD 2017 Workshop on Interactive Data Exploration / Analytics and Visualization in Data Science at IEEE VIS 2017",
                     "link" : "http://voila2017.visualdataweb.org/"
                     
@@ -41,23 +36,19 @@
         },
         {
             "name" : "Vung Pham",
-            "size" : 8000,
             "pubAuthority" : "IEEE International Conference on Big Data",
             "link" : "http://cci.drexel.edu/bigdata/bigdata2018/index.html"
         },
         {
-            "name" : "Paul Murray",
-            "size" : 8000,        
+            "name" : "Paul Murray",       
             "children" : [
                 {
                     "name" : "Angus",
-                    "size" : 6000,
                     "pubAuthority" : "Proceedings of the 10th IEEE Pacific Visualization Symposium",
                     "link" : "http://pacificvis.snu.ac.kr/",
                     "children" : [
                         {
                             "name" : "Ronak",
-                            "size" : 4000,
                             "pubAuthority" : "Proceedings of the 3rd International Workshop on Visualization and Interaction for Ontologies and Linked Data",
                             "link" : "http://poloclub.gatech.edu/idea2017/"
                         }
