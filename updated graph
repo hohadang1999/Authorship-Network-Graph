@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+  
+    .node {
+      cursor: pointer;
+    }
+    
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+    
+    .node text {
+      font: 10px sans-serif;
+    }
+    
+    .link {
+      fill: none;
+      stroke: #ccb;
+      stroke-width: 1px;
+    }
+  
+  </style>
+</head>
+
+<body>
+    <header>
+        <h1>Authorship Network Graph</h1>
+    </header>
+  <script src = "http://d3js.org/d3.v3.min.js" ></script>
+
+  <script>
+    var margin = {
+      top: 20,
+      right: 120,
+      bottom: 20,
+      left: 120
+    },
+      width = 800 
+      height = 1000 
+
+    var vis = d3.select("body").append("svg")
+      .attr("width", 2000)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var tree = d3.layout.tree()
+      .size([height, width])
+      .children(function(d){
+          return d.values;
+        });
+    
+
+    var diagonal = d3.svg.diagonal()
+      .projection(function(d) {
+        return [d.y, d.x];
+      });
+      
+    var defs = vis.insert("svg:defs")
+      .data(["end"]);
+ 
+ 
+  defs.enter().append("svg:path")
+      .attr("d", "M0,-5L10,0L0,5");
+    d3.csv("publications.csv", function(data) {
+
+      var nested_data = d3.nest()
+        .key(function(d) {
+          return d['type'];
+        })
+        .key(function(d) {
+          return d['title'];
+        })
+        
+        .key(function(d) {
+          return d['authors'];
+        })
+        .rollup(function(d){
+          var children = [];
+          d.forEach(function(d){
+            for (var k in d){
+        	if (k == 'pubName' || k == 'pubURL')
+                    children.push({'key': d[k]})
+              }
+          })
+          return children;
+        })
+        .entries(data);
+        
+      console.log(nested_data)
+        
+      root = {};
+      root.key = "Root";
+      root.values = nested_data;
+      
+
+      console.log(root)
+
+      var nodes = tree.nodes(root);
+      
+      
+      var link = vis.selectAll(".link")
+        .data(tree.links(nodes))
+        .enter().append("path")
+        .attr("class", "link")
+        .attr("d", diagonal); 
+
+       
+ 
+        
+     
+      var nodeEnter = vis.selectAll(".node")
+        .data(nodes)
+        .enter()
+        .append("g")
+        .attr("class", "node")
+        .attr("transform", function(d) {
+          return "translate(" + d.y + "," + d.x + ")";
+        });
+
+      nodeEnter.append("circle")
+        .attr("r", 18).style("fill","#eee");
+        
+        
+
+      nodeEnter.append("text")
+        .attr("dx", function(d) {
+          return d.children ? -35 : 35;
+        })
+        .attr("dy", 15)
+        .style("stroke", function(d) {
+          return d.children ? "source" : "target"
+        })
+        .text(function(d) {
+          return d.children ? d.key : d.key;
+        });
+    });
+
+    
+    
+
+  </script>
+</body>
+
+</html>
